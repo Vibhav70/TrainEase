@@ -54,7 +54,7 @@ project_root/
 - Used DVC (Data Version Control) for pipeline management.
 - Below is an image showcasing the DVC pipeline:
   
-  ![DVC Pipeline](![image](https://github.com/user-attachments/assets/d410431f-ae01-4c01-9627-d8fb1045f631)
+  ![DVC Pipeline](https://drive.google.com/file/d/1DGGfU3AsGCwPw8ow1ApDXwNzot17Vj6C/view?usp=sharing
 )
 
 ### 6. Flask Prediction Pipeline
