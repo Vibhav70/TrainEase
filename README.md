@@ -32,12 +32,12 @@ project_root/
 ## Steps in the Project
 
 ### 1. Data Ingestion
-- Downloads dataset from a remote source.
-- Stores it in the `artifacts/data_ingestion/` directory.
+- Downloads dataset from a remote source(google drive zip file).
+- Extract the zip file and stores it in the `artifacts/data_ingestion/` directory.
 
 ### 2. Preparing Base Model
 - Loads necessary configurations.
-- Creates a base model for training.
+- Load a base model for training.
 - Stores it in `artifacts/prepare_base_model/`.
 
 ### 3. Model Training
@@ -52,6 +52,10 @@ project_root/
 ### 5. MLflow and DVC Integration
 - Connected to MLflow using DAGsHub for tracking experiments.
 - Used DVC (Data Version Control) for pipeline management.
+- Below is an image showcasing the DVC pipeline:
+  
+  ![DVC Pipeline](![image](https://github.com/user-attachments/assets/d410431f-ae01-4c01-9627-d8fb1045f631)
+)
 
 ### 6. Flask Prediction Pipeline
 - Developed a Flask API (`app.py`) for serving model predictions.
@@ -59,6 +63,10 @@ project_root/
 ### 7. Docker Containerization
 - Created a Docker image of the project.
 - The image can be deployed on any cloud or server.
+- The container has been uploaded to Docker Hub and can be pulled using the command:
+  ```sh
+  docker pull vibhav70/chestcancer_mlops
+  ```
 
 ## Running the Project
 ### Prerequisites
@@ -73,31 +81,45 @@ Ensure you have the following installed:
 ### Steps to Run
 1. **Clone the Repository:**
    ```sh
-   git clone <repo_url>
-   cd project_root
+   git clone https://github.com/Vibhav70/chest-cancer-classification-using-mlflow.git
+   cd chest-cancer-classification-using-mlflow
    ```
-2. **Install Dependencies:**
+2. **Create and Activate Environment:**
+   ```sh
+   python -m venv venv
+   cd venv
+   cd Scripts
+   activate
+   cd..
+   cd..
+   ```   
+4. **Install Dependencies:**
    ```sh
    pip install -r requirements.txt
    ```
-3. **Run the Pipeline Using DVC:**
+5. **Run the Pipeline Using DVC:**
    ```sh
    dvc repro
    ```
-4. **Start Flask Application:**
+6. **Start Flask Application:**
    ```sh
    python app.py
    ```
-5. **Run with Docker:**
+### Alternate Way
+1. **Run with Docker:**
    ```sh
    docker build -t chest_cancer_classifier .
    docker run -p 5000:5000 chest_cancer_classifier
+   ```
+2. **Pull Docker Image from Docker Hub:**
+   ```sh
+   docker pull your_dockerhub_username/chest_cancer_classifier
    ```
 
 ## Results and Observations
 - Successfully implemented MLOps principles for chest cancer classification.
 - Automated model training and evaluation.
-- Integrated experiment tracking and version control.
+- Integrated experiment tracking and data version control.
 - Developed an API for easy access to predictions.
 - Packaged the model in a portable Docker container for easy deployment.
 
