@@ -107,15 +107,15 @@ Ensure you have the following installed:
    python app.py
    ```
 ### Alternate Way
-1. **Run with Docker:**
+1. **Pull Docker Image from Docker Hub:**
    ```sh
-   docker build -t chest_cancer_classifier .
-   docker run -p 5000:5000 chest_cancer_classifier
+   docker pull vibhav70/chestcancer_mlops
    ```
-2. **Pull Docker Image from Docker Hub:**
+2. **Run with Docker:**
    ```sh
-   docker pull your_dockerhub_username/chest_cancer_classifier
+   docker run -p 5000:5000 vibhav70/chestcancer_mlops
    ```
+
 
 ## Results and Observations
 - Successfully implemented MLOps principles for chest cancer classification.
