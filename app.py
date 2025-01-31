@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, send_from_directory
 import os
 import yaml
+import shutil
 from flask_cors import CORS, cross_origin
 from cnnClassifier.utils.common import decodeImage
 from cnnClassifier.pipeline.prediciton import PredictionPipeline
@@ -11,6 +12,12 @@ os.putenv('LC_ALL', 'en_US.UTF-8')
 
 app = Flask(__name__)
 CORS(app)
+
+app.secret_key = 'supersecretkey123!@#'
+
+# Directory to store trained models
+MODEL_DIR = "model"
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 
 class ClientApp:
@@ -59,7 +66,7 @@ def trainRoute():
             epochs = int(request.form.get('epochs'))
             learning_rate = float(request.form.get('learning_rate'))
             batch_size = int(request.form.get('batch_size'))
-            base_model = request.form.get('base_model')  # Get the selected base model
+            base_model = request.form.get('base_model')
 
             # Update YAML files
             update_yaml("config/config.yaml", {"data_ingestion": {"source_URL": dataset_url}})
@@ -68,18 +75,31 @@ def trainRoute():
                 "LEARNING_RATE": learning_rate,
                 "BATCH_SIZE": batch_size,
                 "IMAGE_SIZE": [224, 224, 3],
-                "BASE_MODEL": base_model  # Add the selected base model to params.yaml
+                "BASE_MODEL": base_model
             })
 
             # Trigger training
-            os.system("dvc repro")
-            print("Training started successfully!", "success")  # Success message
+            os.system("python main.py")
+
+            # Move the trained model to the "model" directory
+            trained_model_path = "artifacts/training/model.h5"
+            if os.path.exists(trained_model_path):
+                shutil.move(trained_model_path, os.path.join(MODEL_DIR, "model.h5"))
+                flash("Training completed successfully! You can now download your model.", "success")
+            else:
+                flash("Training completed, but the model file was not found.", "error")
+
         except Exception as e:
-            print(f"An error occurred: {str(e)}", "error")  # Error message
+            flash(f"An error occurred: {str(e)}", "error")
 
         return redirect(url_for('trainRoute'))
 
     return render_template('train.html')
+
+@app.route("/download_model")
+def download_model():
+    # Serve the trained model for download
+    return send_from_directory(MODEL_DIR, "model.h5", as_attachment=True)
 
 @app.route("/predict", methods=['POST'])
 @cross_origin()
