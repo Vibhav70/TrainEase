@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Model</title>
+</head>
+<body>
+    <h2>Train the Model</h2>
+
+    <!-- Display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/train" method="post">
+        <label for="dataset_url">Dataset URL:</label>
+        <input type="text" name="dataset_url" required><br><br>
+
+        <label for="epochs">Epochs:</label>
+        <input type="number" name="epochs" value="1" required><br><br>
+
+        <label for="learning_rate">Learning Rate:</label>
+        <input type="text" name="learning_rate" value="0.01" required><br><br>
+
+        <label for="batch_size">Batch Size:</label>
+        <input type="number" name="batch_size" value="16" required><br><br>
+
+        <!-- Dropdown for selecting the base model -->
+        <label for="base_model">Base Model:</label>
+        <select name="base_model" required>
+            <option value="VGG16">VGG16</option>
+            <option value="MobileNet">MobileNet</option>
+            <option value="ResNet50">ResNet50</option>
+            <option value="InceptionV3">InceptionV3</option>
+        </select><br><br>
+
+        <button type="submit">Train Model</button>
+    </form>
+</body>
+</html>
