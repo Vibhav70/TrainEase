@@ -1,0 +1,40 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Git files
+.git/
+.gitignore
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.out
+*.err
+tmp/
+*.swp
+
+# Ignore large datasets or outputs
+data/
+output/
+*.csv
+*.json
+*.db
+
+# Ignore Docker artifacts
+Dockerfile
+.dockerignore
+
+# Ignore dependencies installed locally
+node_modules/
+*.egg-info/

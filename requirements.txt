@@ -16,4 +16,6 @@ types-PyYAML
 scipy
 Flask
 Flask-Cors
+gunicorn
+waitress
 -e .

@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  webapp:
+    build: .
+    ports:
+      - "5000:5000"  # Expose port 5000 on the host machine
+    mem_limit: 512m  # Limit the memory to 512MB to match your Render environment
+    environment:
+      - FLASK_ENV=production  # Set any environment variables if needed
+    volumes:
+      - .:/app  # Mount the current directory into the container for live updates (optional)
+    restart: unless-stopped  # Ensure the app restarts if it crashes
