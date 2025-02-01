@@ -67,6 +67,7 @@ def trainRoute():
             learning_rate = float(request.form.get('learning_rate'))
             batch_size = int(request.form.get('batch_size'))
             base_model = request.form.get('base_model')
+            classes = int(request.form.get('classes'))  
 
             # Update YAML files
             update_yaml("config/config.yaml", {"data_ingestion": {"source_URL": dataset_url}})
@@ -75,13 +76,13 @@ def trainRoute():
                 "LEARNING_RATE": learning_rate,
                 "BATCH_SIZE": batch_size,
                 "IMAGE_SIZE": [224, 224, 3],
-                "BASE_MODEL": base_model
+                "BASE_MODEL": base_model,
+                "CLASSES": classes  
             })
 
-            # Trigger training
+    
             os.system("python main.py")
-
-            # Move the trained model to the "model" directory
+          
             trained_model_path = "artifacts/training/model.h5"
             if os.path.exists(trained_model_path):
                 shutil.move(trained_model_path, os.path.join(MODEL_DIR, "model.h5"))
