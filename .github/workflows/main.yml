@@ -35,7 +35,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./Dockerfile  # Explicitly specify the path to the Dockerfile
+        file: Dockerfile  # Explicitly specify the path to the Dockerfile
         tags: |
           vibhav70/trainease:${{ github.sha }}
           vibhav70/trainease:latest
