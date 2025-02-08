@@ -1,7 +1,7 @@
-# Chest Cancer Classification using MLOps
+# TrainEase
 
 ## Project Overview
-This project focuses on classifying chest cancer using Machine Learning Operations (MLOps) principles. The workflow involves data ingestion, model training, evaluation, and deployment using modern MLOps tools such as MLflow, DVC, Flask, and Docker.
+This project focuses on classifying any type of image data using Machine Learning Operations (MLOps) principles. The workflow involves data ingestion, model training, evaluation, and deployment using modern MLOps tools such as MLflow, DVC, Flask, and Docker.
 
 ## Project Structure
 The project follows a standard MLOps directory structure:
@@ -9,7 +9,6 @@ The project follows a standard MLOps directory structure:
 project_root/
 │-- config/
 │   │-- config.yaml
-│   │-- params.yaml
 │-- artifacts/
 │   │-- data_ingestion/
 │   │-- prepare_base_model/
@@ -26,6 +25,7 @@ project_root/
 │-- Dockerfile
 │-- requirements.txt
 │-- app.py
+│-- params.yaml
 │-- README.md
 ```
 
@@ -66,7 +66,7 @@ project_root/
 - The image can be deployed on any cloud or server.
 - The container has been uploaded to Docker Hub and can be pulled using the command:
   ```sh
-  docker pull vibhav70/chestcancer_mlops
+  docker pull vibhav70/TrainEase
   ```
 
 ## Running the Project
@@ -82,8 +82,8 @@ Ensure you have the following installed:
 ### Steps to Run
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/Vibhav70/chest-cancer-classification-using-mlflow.git
-   cd chest-cancer-classification-using-mlflow
+   git clone https://github.com/Vibhav70/TrainEase.git
+   cd TrainEase
    ```
 2. **Create and Activate Environment:**
    ```sh
@@ -109,16 +109,16 @@ Ensure you have the following installed:
 ### Alternate Way
 1. **Pull Docker Image from Docker Hub:**
    ```sh
-   docker pull vibhav70/chestcancer_mlops
+   docker pull vibhav70/TrainEase
    ```
 2. **Run with Docker:**
    ```sh
-   docker run -p 5000:5000 vibhav70/chestcancer_mlops
+   docker run -p 5000:5000 vibhav70/TrainEase
    ```
 
 
 ## Results and Observations
-- Successfully implemented MLOps principles for chest cancer classification.
+- Successfully implemented MLOps principles for Image classification.
 - Automated model training and evaluation.
 - Integrated experiment tracking and data version control.
 - Developed an API for easy access to predictions.
