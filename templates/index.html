@@ -94,12 +94,31 @@
             display: none;
             background: rgba(255, 255, 255, 0.7);
         }
+        .train-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .train-button .btn {
+            background-color: #1b2d6b;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .train-button .btn:hover {
+            background-color: #0f1a3d;
+        }
     </style>
 </head>
 <body>
     <div class="main container">
         <section class="iupload">
             <h3>TrainEase</h3>
+            <!-- Add the Train Model Button -->
+            <div class="train-button">
+                <a href="{{ url_for('trainRoute') }}" class="btn">Train Model</a>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-part">
